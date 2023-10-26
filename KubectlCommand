@@ -1,0 +1,28 @@
+#
+kubectl get nodes
+kubectl run helloworld --image=yadavpk/helloworld --port=8080
+kubectl run helloworld --image=yadavpk/helloworld --port=8080 --dry-run=client -o yaml >helloworld.yaml
+
+kubectl get pods
+kubectl get po
+kubectl get po -o wide
+kubectl logs helloworld
+kubectl logs helloworld -c helloworld
+kubectl describe pods helloworld 
+kubectl create -f helloworld.yaml
+kubectl port-forward first-pod 8888:8080
+
+# Deleting a pod by name
+kubectl delete po kubia-gpu
+
+#Deleting pods using label selectors
+kubectl delete po -l creation_method=manual
+
+#Deleting pods by deleting the whole namespace
+kubectl delete ns custom-namespace
+
+#Deleting all pods in a namespace, while keeping the namespace
+kubectl delete po --all
+ 
+#Deleting (almost) all resources in a namespace
+kubectl delete all --all
