@@ -1,11 +1,19 @@
-#
+#List all the node of cluster
 kubectl get nodes
-kubectl run helloworld --image=yadavpk/helloworld --port=8080
-kubectl run helloworld --image=yadavpk/helloworld --port=8080 --dry-run=client -o yaml >helloworld.yaml
 
+#Create your first POD
+kubectl run helloworld --image=yadavpk/helloworld --port=8080
+
+#Write the output to YAML and use Yaml file to create you POD
+kubectl run helloworld-yaml --image=yadavpk/helloworld --port=8080 --dry-run=client -o yaml >helloworld.yaml
+kubectl create -f helloworld.yaml
+
+#List all the PODS in cluster
 kubectl get pods
 kubectl get po
 kubectl get po -o wide
+
+
 kubectl logs helloworld
 kubectl logs helloworld -c helloworld
 kubectl describe pods helloworld 
