@@ -1,0 +1,35 @@
+#CLI command to create helloworld-deployment-cpu-request.yaml
+#kubectl create deployment helloworld-deployment-cpu-request --image=yadavpk/helloworld:1.0.1 --port=8080  --dry-run=client -o yaml >helloworld-deployment-cpu-request.yaml
+# Notice the changes to resource field
+#       resources:
+#         requests:
+#           cpu: 100m #Requesting 100 millicores of CPU per pod
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: helloworld-deployment-cpu-request
+  name: helloworld-deployment-cpu-request
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld-deployment-cpu-request
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: helloworld-deployment-cpu-request
+    spec:
+      containers:
+      - image: yadavpk/helloworld:1.0.1
+        name: helloworld
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 100m #Requesting 100 millicores of CPU per pod
+status: {}
